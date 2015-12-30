@@ -37,7 +37,7 @@ body{
 
 
 .pic_enlarged_container img{
-	max-width: 80%
+	max-width: 80%;
 	background-color: rgba(0,0,0,0.5);
 	 box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 	padding:10px;
@@ -73,6 +73,28 @@ header {
 .tabs_top{display: none;}
 }
 
+
+.tabs_top_mobile
+{
+	display: none;
+	position:absolute;
+	top:0px;
+	right:0px;
+	padding:10px;
+
+}
+
+.tabs_top_mobile img{
+	width:30px;
+}
+
+@media (max-width: 768px) {
+
+.tabs_top_mobile
+{
+	display:inline;
+}
+}
 
 .single_tab
 {
@@ -120,12 +142,9 @@ header {
 {
 	text-align: center;
 	padding:100px 0px;
+	 background-image:url("../img/uber_3.png");
 	
-	  background: url(../img/uber_3.jpg) no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  background-size: 100% auto;
   color:white;
 }
 
