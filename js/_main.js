@@ -1,54 +1,44 @@
-$( function() {
+var didScroll;
+var lastScrollTop = 0;
+var delta = 5;
+var navbarHeight = $('header').outerHeight();
 
-
-    var width = $('.block').width();
-  var $container = $('.container').masonry({
-    itemSelector: '.block',
-    columnWidth: '.block'
-  });
-   
-
-    var $items = getItems();
-    // hide by default
-    $items.hide();
-    // append to container
-    $container.append( $items );
-    $items.imagesLoaded().progress( function( imgLoad, image ) {
-      // get item
-      // image is imagesLoaded class, not <img>
-      // <img> is image.img
-      var $item = $( image.img ).parents('.block');
-      // un-hide item
-      $item.show();
-      // masonry does its thing
-      $container.masonry( 'appended', $item ).masonry();
-    });
+$(window).scroll(function(event){
+    didScroll = true;
 });
 
-function load(){
-  alert();
-  
+setInterval(function() {
+    if (didScroll) {
+        hasScrolled();
+        didScroll = false;
+    }
+}, 250);
+
+function hasScrolled() {
+    var st = $(this).scrollTop();
+    
+    // Make sure they scroll more than delta
+    if(Math.abs(lastScrollTop - st) <= delta)
+        return;
+    
+    // If they scrolled down and are past the navbar, add class .nav-up.
+    // This is necessary so you never see what is "behind" the navbar.
+    if (st > lastScrollTop && st > navbarHeight){
+        // Scroll Down
+        $('header').removeClass('nav-down').addClass('nav-up');
+    } else {
+        // Scroll Up
+        if(st + $(window).height() < $(document).height()) {
+            $('header').removeClass('nav-up').addClass('nav-down');
+        }
+    }
+    
+    lastScrollTop = st;
 }
 
-
-function randomInt( min, max ) {
-  return Math.floor( Math.random() * max + min );
-}
-
-function getItem() {
-  var width = 400;
-  var height = randomInt( 300, 500 );
-  var item = '<div class="block">'+
-    '<img src="http://lorempixel.com/' + 
-      width + '/' + height + '/transport" /></div>';
-  return item;
-}
-
-function getItems() {
-  var items = '';
-  for ( var i=0; i < 20; i++ ) {
-    items += getItem();
-  }
-  // return jQuery object
-  return $( items );
-}
+$(window).scroll(function() {
+   if($(window).scrollTop() + $(window).height() == $(document).height()) {
+      
+       load();
+   }
+});

@@ -1,32 +1,165 @@
 html{
 	margin:0;
 	padding:0;
+	width:100%;
 }
 
 body{
 	margin:0;
 	padding:0;
+	width:100%;
+	position: relative;
 }
+
+
+.middle_layer
+{
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	top:0px;
+	left:0px;
+	background-color: rgba(0,0,0,0.8);
+	z-index: 5;
+	display:none;
+}
+
+.pic_enlarged_container
+{
+	position: fixed;
+	width: 100%;
+	top:10%;
+	
+	z-index: 6;
+	text-align: center;
+	display:none;
+}
+
+
+.pic_enlarged_container img{
+	background-color: rgba(0,0,0,0.5);
+	 box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+	padding:10px;
+	display: inline-block;
+}
+
+header {
+    background-color: rgba(0,0,0,0.8);
+    height: 50px;
+    color:white;
+    position: fixed;
+    top: 0;
+    transition: top 0.2s ease-in-out;
+    width: 100%;
+}
+
+.carvertise_logo_top
+{
+	margin:15px 20px;
+	font-size: 20px;
+}
+
+.tabs_top{
+	position:absolute;
+	top:0px;
+	right:0px;
+	padding:15px;
+}
+
+
+.single_tab
+{
+	color:white;
+	margin:0px 30px;
+	font-size: 20px;
+}
+.nav-up {
+    top: -50px;
+}
+
 
 .header
 {
 	text-align: center;
-	padding:100px 0px;
+	padding:150px 0px;
+	
+	 background-image:url("../img/uber_2.png");
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+
+  color:white;
 }
 
+.header h1
+{
+	font-size:50px;
+}
 
 .container{
 	margin:0;
 	padding:0;
+	background-color: black;
+	min-height: 800px;
 }
 
 
 .block{
+	cursor:pointer;
 	float:Left;
 	width:25%;
+	overflow:hidden;
+	position:relative;
+}
+
+
+.block_middle_layer
+{
+	position:absolute;
+	width:100%;
+	height:100%;
+	top:0px;
+	left:0px;
+	z-index:5;
+	opacity: 0;
+	background-color: rgba(0,0,0,0.5);
+
+	-webkit-transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    transition: opacity 1s ease-in-out;
+}
+
+.block_middle_layer p{
+	font-size: 30px;
+	 width: 50%;
+  height: 50%;
+  overflow: auto;
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+	color:white;
+	text-align:center;
 }
 
 .block img {
   display: block;
   width: 100%;
+    -webkit-transition: all 3s ease; /* Safari and Chrome */
+    -moz-transition: all 3s ease; /* Firefox */
+    -ms-transition: all 3s ease; /* IE 9 */
+    -o-transition: all 3s ease; /* Opera */
+    transition: all 3s ease;
+}
+
+.block:hover img {
+    -webkit-transform:scale(1.1); /* Safari and Chrome */
+    -moz-transform:scale(1.1); /* Firefox */
+    -ms-transform:scale(1.1); /* IE 9 */
+    -o-transform:scale(1.1); /* Opera */
+     transform:scale(1.1);
+}
+
+
+
+.block:hover .block_middle_layer {
+    opacity: 1;
 }
