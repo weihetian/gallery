@@ -41,6 +41,7 @@ body{
 	 box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 	padding:10px;
 	display: inline-block;
+	border:1px solid white;
 }
 
 header {
@@ -78,6 +79,8 @@ header {
 }
 
 
+
+
 .header
 {
 	text-align: center;
@@ -90,9 +93,53 @@ header {
   color:white;
 }
 
+@media (max-width: 1200px) {
+    .header
+{
+	text-align: center;
+	padding:100px 0px;
+	
+	 background-image:url("../img/uber_2.png");
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+
+  color:white;
+}
+}
+
+@media (max-width: 768px) {
+	.header
+{
+	text-align: center;
+	padding:60px 0px;
+	
+	 background-image:url("../img/uber_2.png");
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+
+  color:white;
+}
+
+}
+
+
 .header h1
 {
 	font-size:50px;
+}
+
+@media (max-width: 1200px) {
+    .header h1
+{
+	font-size:40px;
+}
+}
+
+@media (max-width: 768px) {
+	.header h1
+{
+	font-size:30px;
+}
 }
 
 .container{
@@ -100,16 +147,39 @@ header {
 	padding:0;
 	background-color: black;
 	min-height: 800px;
+	padding-bottom:200px;
 }
 
 
 .block{
 	cursor:pointer;
 	float:Left;
+	width:20%;
+	overflow:hidden;
+	position:relative;
+}
+
+@media (max-width: 1200px) {
+    .block{
+	cursor:pointer;
+	float:Left;
 	width:25%;
 	overflow:hidden;
 	position:relative;
 }
+}
+
+@media (max-width: 768px) {
+	.block{
+	cursor:pointer;
+	float:Left;
+	width:50%;
+	overflow:hidden;
+	position:relative;
+}
+}
+
+
 
 
 .block_middle_layer
