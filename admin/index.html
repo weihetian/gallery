@@ -7,10 +7,19 @@
 
 
 
-
   <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
   <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.0/angular.min.js'></script>
+
+
+
+
   <script src="js/_app.js"></script>
+
+
+  <script src="js/dropzone.min.js"></script>
+
+  <link href="css/dropzone.min.css" type="text/css" rel="stylesheet" />
+
 
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -24,12 +33,25 @@
 
   <div class='container'>
     <div class="page-header">
-      <h1>Gallery <small>control panel</small></h1>
+      <h1>Gallery <small>control panel<a class="pull-right" onclick='logout()' href="javascript:void">logout</a></small></h1>
     </div>
+
 
 
   <div class='btn btn-default' data-toggle="modal" data-target="#myModal">New Camapgin</div>
     <div class='campaign_area' ng-controller='campaignController'>
+
+      <div class='well upload_area' ng-show='upload'>
+        <div class='close_upload' ng-click='close_upload()'>
+           <span class="glyphicon glyphicon-remove"></span>
+        </div>
+        <h2><small>Upload pictures to campaign name:</small> {{campaignSelected}}</h2>
+        <form action="data_access/upload.php" id='dropdrop' class="dropzone">
+          <input name="campaign_id"  type='hidden' value="{{campaignId}}"  />
+        </form>
+
+      </div>
+
       <div class='single_campaign' ng-repeat="campaign in campaigns">
         <div class="jumbotron">
           <h1>{{campaign.name}}
@@ -40,9 +62,29 @@
             </small>
           </h1>
           <p>{{campaign.description}}</p>
+
+
+
           <div class='picture'>
-            <button type="button" class="btn btn-default btn-lg">
-                 <span class="glyphicon glyphicon glyphicon-plus"> Add</span>
+            <div class='pictures_wrapper'>
+              <div class='single_picture' ng-mouseenter="show_description($event)" ng-mouseleave="hide_description($event)" ng-repeat='image in campaign.images'>
+                <div class='delete_picture' ng-click='delete_image(image.id)'>
+                   <span class="glyphicon glyphicon-remove"></span>
+                </div>
+                <img src='{{image.url}}'>
+                <div class='image_description' ng-click='edit()'>
+                  <input ng-show='edit_description' type='text' class='edit_black edit_input{{image.id}}' value="{{image.description}}"></input>
+                  <br>
+                  <button  ng-show='edit_description' ng-click='submit_edit(image.id)' class='edit_black btn btn-default'>Submit</button>
+                  <p ng-show='!edit_description'>{{image.description}}</p>
+
+                </div>
+              </div>
+            </div>
+
+            <button type="button" class="btn btn-default btn-lg" ng-click='addpicture(campaign.id,campaign.name)'>
+                 <span class="glyphicon glyphicon glyphicon-plus"> Edit/Add Pictures</span>
+
             </button>
 
           </div>
@@ -87,6 +129,7 @@
 
 
 
+
 <script>
 function getCookie(cname) {
     var name = cname + "=";
@@ -103,9 +146,20 @@ function setCookie(){
 
 }
 
-function deleteCookie(){
-
+function setCookie(cname, cvalue, exdays) {
+  var d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  var expires = "expires="+d.toUTCString();
+  document.cookie = cname + "=" + cvalue + "; " + expires;
 }
+
+function deleteCookie(cname){
+  document.cookie = cname+"=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+}
+
+
+
+
 
 var checkCookie = function(){
 
@@ -121,7 +175,23 @@ var checkCookie = function(){
 
 }
 
+function logout(){
+  deleteCookie("gallery_user");
+  window.location.href = 'login.html';
+}
 
+
+
+
+// $(function() {
+//   // Now that the DOM is fully loaded, create the dropzone, and setup the
+//   // event listeners
+//   var myDropzone = new Dropzone("#dropdrop");
+//   myDropzone.on("success", function(file) {
+//     alert();
+//     /* Maybe display some more file information on your page */
+//   });
+// })
 
 $(function(){
 
@@ -134,6 +204,8 @@ $(function(){
     window.location.href = 'login.html';
   }
 })
+
+
 
 
 
