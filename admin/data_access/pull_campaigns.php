@@ -11,7 +11,7 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-$query = "SELECT * FROM campaign";
+$query = "SELECT * FROM campaign ORDER BY id DESC";
 
 $campaign_result = array();
 
