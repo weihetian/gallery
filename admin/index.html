@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" ng-app='gallery'>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -18,9 +18,9 @@
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
-
+  <link rel="stylesheet" href='css/_main.css'>
 </head>
-<body>
+<body  ng-app='gallery'>
 
   <div class='container'>
     <div class="page-header">
@@ -28,12 +28,30 @@
     </div>
 
 
-    <div class='btn btn-default' data-toggle="modal" data-target="#myModal">New Camapgin</div>
-    <div class='campaign' ng-controller='campaignController'>
-      <div class='picture'>
+  <div class='btn btn-default' data-toggle="modal" data-target="#myModal">New Camapgin</div>
+    <div class='campaign_area' ng-controller='campaignController'>
+      <div class='single_campaign' ng-repeat="campaign in campaigns">
+        <div class="jumbotron">
+          <h1>{{campaign.name}}
+            <small>
+            <button type="button" class="btn btn-danger btn-lg">
+                 <span class="glyphicon glyphicon-remove"> Delete</span>
+            </button>
+            </small>
+          </h1>
+          <p>{{campaign.description}}</p>
+          <div class='picture'>
+            <button type="button" class="btn btn-default btn-lg">
+                 <span class="glyphicon glyphicon glyphicon-plus"> Add</span>
+            </button>
+
+          </div>
+
+        </div>
 
 
       </div>
+
     </div>
 
   </div>

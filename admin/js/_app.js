@@ -22,11 +22,15 @@
 
       });
     }
-    $scope.greeting = 'Hola!';
   }]);
 
   app.controller('campaignController', ['$scope', function($scope) {
+    $scope.campaigns = [];
+    $.getJSON('data_access/pull_campaigns.php', function(data) {
+      $scope.campaigns = data;
+      $scope.$digest();
 
+    });
   }]);
 
 
