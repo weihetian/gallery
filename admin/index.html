@@ -20,7 +20,7 @@
 
   <link href="css/dropzone.min.css" type="text/css" rel="stylesheet" />
 
-
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -31,49 +31,54 @@
 </head>
 <body  ng-app='gallery'>
 
-  <div class='container'>
-    <div class="page-header">
-      <h1>Gallery <small>control panel<a class="pull-right" onclick='logout()' href="javascript:void">logout</a></small></h1>
-    </div>
-
-
-
-  <div class='btn btn-default' data-toggle="modal" data-target="#myModal">New Camapgin</div>
-    <div class='campaign_area' ng-controller='campaignController'>
-
-      <div class='well upload_area' ng-show='upload'>
-        <div class='close_upload' ng-click='close_upload()'>
-           <span class="glyphicon glyphicon-remove"></span>
-        </div>
-        <h2><small>Upload pictures to campaign name:</small> {{campaignSelected}}</h2>
-        <form action="upload.php" id='dropdrop' class="dropzone">
-          <input name="campaign_id"  type='hidden' value="{{campaignId}}"  />
-        </form>
-
+  <div class='main' ng-controller='campaignController'>
+    <div class='left_area'>
+      <div class='left_name'>
+          GALLERY
       </div>
+      <div class='left_function_area'>
+        <div class='btn btn-default new_btn' data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i></div>
+      </div>
+      <div class='left_case_area'>
+        <div class='single_case_wrapper' ng-repeat="campaign in campaigns">
+        <div class='single_case' ng-click='select_campaign(campaign.id)' >
+          <h4><i class="fa fa-file-o"></i> {{campaign.name}}</h4>
 
-      <div class='single_campaign' ng-repeat="campaign in campaigns">
-        <div class="jumbotron">
-          <h1>{{campaign.name}}
-            <small>
-            <button type="button" class="btn btn-danger btn-lg" ng-click='deleteCampaign(campaign.id)'>
-                 <span class="glyphicon glyphicon-remove"> Delete</span>
-            </button>
-            </small>
-          </h1>
-          <p>{{campaign.description}}</p>
+          <p><i class="fa fa-folder-open-o"></i> {{campaign.description}}</p>
+        </div>
+        </div>
+      </div>
+    </div>
+    <div class='right_area'>
+      <div class='case_content_area'>
 
 
+        <div class='case_content_function_area'>
+          <div class='case_content_function'>
+            <i class="fa fa-floppy-o"> Save</i>
+          </div>
+        </div>
 
-          <div class='picture'>
+        <div class='case_name case_content_area_item'>
+          <h4><i class="fa fa-file-o"></i> Name:</h4>
+          <input class='noborder_input green_input' type="text" value="{{current.name}}">
+        </div>
+
+        <div class='description case_content_area_item'>
+          <h4><i class="fa fa-pencil-square-o"></i> Description:</h4>
+          <textarea class='noborder_textarea green_input' type="text">{{current.description}}</textarea>
+        </div>
+
+        <div class='description case_content_area_item'>
+            <h4><i class="fa fa-file-image-o"></i> Pictures:   <div class='btn btn-default new_btn' data-toggle="modal" data-target="#myModal2"><i class="fa fa-plus"></i></div></h4>
             <div class='pictures_wrapper'>
-              <div class='single_picture' ng-mouseenter="show_description($event)" ng-mouseleave="hide_description($event)" ng-repeat='image in campaign.images'>
+              <div class='single_picture' ng-mouseenter="show_description($event)" ng-mouseleave="hide_description($event)" ng-repeat='image in current.images'>
                 <div class='delete_picture' ng-click='delete_image(image.id)'>
                    <span class="glyphicon glyphicon-remove"></span>
                 </div>
                 <img src='{{image.url}}'>
                 <div class='image_description' ng-click='edit()'>
-                  <input ng-show='edit_description' type='text' class='edit_black edit_input{{image.id}}' value="{{image.description}}"></input>
+                  <input ng-show='edit_description' type='text' class='edit_black edit_black_input edit_input{{image.id}}' value="{{image.description}}"></input>
                   <br>
                   <button  ng-show='edit_description' ng-click='submit_edit(image.id)' class='edit_black btn btn-default'>Submit</button>
                   <p ng-show='!edit_description'>{{image.description}}</p>
@@ -81,50 +86,63 @@
                 </div>
               </div>
             </div>
-
-            <button type="button" class="btn btn-default btn-lg" ng-click='addpicture(campaign.id,campaign.name)'>
-                 <span class="glyphicon glyphicon glyphicon-plus"> Edit/Add Pictures</span>
-
-            </button>
-
-          </div>
-
         </div>
-
-
-      </div>
-
-
-      <!-- Modal -->
-      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="myModalLabel">New Campaign</h4>
-            </div>
-            <div class="modal-body">
-              <div class="form-group">
-                <label for="name">Campaign Name</label>
-                <input class="form-control" id="name" placeholder="Campaign Name">
-              </div>
-              <div class="form-group">
-                <label for="description">Description</label>
-                <textarea class="form-control" id="description"></textarea>
-              </div>
-
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" ng-click="add_campaign()" data-dismiss="modal" id='add_campaign'>Add</button>
-            </div>
-          </div>
-        </div>
-      </div>
 
     </div>
-
   </div>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">New Campaign</h4>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="name">Campaign Name</label>
+            <input class="form-control" id="name" placeholder="Campaign Name">
+          </div>
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description"></textarea>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" ng-click="add_campaign()" data-dismiss="modal" id='add_campaign'>Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">New pictures</h4>
+        </div>
+        <div class="modal-body">
+          <div class='well upload_area'>
+            <h2><small>Upload pictures to campaign name:</small> {{current.name}}</h2>
+            <form action="upload.php" id='dropdrop' class="dropzone">
+              <input name="campaign_id"  type='hidden' value="{{current.id}}"  />
+            </form>
+
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
 
 
 

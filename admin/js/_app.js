@@ -7,8 +7,20 @@
 
   app.controller('campaignController', ['$scope', function($scope) {
 
-    $scope.upload = false;
 
+    $scope.current;
+
+    $scope.campaigns;
+
+
+    $scope.select_campaign = function(id){
+      for(var i=0; i<$scope.campaigns.length;i++){
+        if(id==$scope.campaigns[i].id){
+          $scope.current=$scope.campaigns[i];
+        }
+      }
+
+    }
 
 
     $scope.add_campaign = function(){
@@ -57,7 +69,7 @@
       init: function() {
         this.on("success", function(file) {
 
-          updateCampaigns();
+
        });
       }
     };
@@ -96,7 +108,14 @@
       })
       .done(function( msg ) {
         if(msg == "succeed"){
-          updateCampaigns();
+          for(var i=0;i<$scope.current.images.length;i++){
+            if(id==$scope.current.images[i].id){
+                $scope.current.images[i].description=des;
+
+              }
+          }
+
+
           $scope.edit_description = false;
         }else
         {
@@ -107,18 +126,7 @@
     }
 
 
-    $scope.close_upload = function(){
-      $scope.campaignId = "";
-      $scope.campaignSelected = "";
-      $scope.upload = false;
-    }
 
-    $scope.addpicture = function(campaignid,campaign){
-
-      $scope.campaignId = campaignid;
-      $scope.campaignSelected = campaign;
-      $scope.upload = true;
-    }
 
     $scope.delete_image = function(id){
 
@@ -130,7 +138,7 @@
       .done(function( msg ) {
         if(msg == "succeed"){
 
-          updateCampaigns();
+          alert("please refresh the page");
         }else
         {
             alert(msg);
