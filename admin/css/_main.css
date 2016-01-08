@@ -65,9 +65,25 @@ body{
   cursor: pointer;
   margin: 0px;
   padding: 10px 20px;
-
+	position: relative;
   border-bottom: 1px solid #bdc3c7;
+}
 
+.single_case_function_area{
+	position: absolute;
+	top:10px;
+	right: 10px;
+	color: white;
+	display: none;
+}
+
+
+.single_case_function_item{
+	cursor: pointer;
+}
+
+.single_case_function_item:hover{
+	color: #e74c3c;
 }
 
 .single_case h4{
@@ -91,6 +107,10 @@ body{
 
 .single_case:hover p{
   color: white;
+}
+
+.single_case:hover .single_case_function_area{
+	display: inline;
 }
 
 

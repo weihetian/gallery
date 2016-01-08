@@ -42,6 +42,11 @@
       <div class='left_case_area'>
         <div class='single_case_wrapper' ng-repeat="campaign in campaigns">
         <div class='single_case' ng-click='select_campaign(campaign.id)' >
+          <div class='single_case_function_area'>
+            <div class='single_case_function_delete single_case_function_item'>
+              <i class="fa fa-trash-o"></i>
+            </div>
+          </div>
           <h4><i class="fa fa-file-o"></i> {{campaign.name}}</h4>
 
           <p><i class="fa fa-folder-open-o"></i> {{campaign.description}}</p>
