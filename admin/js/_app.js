@@ -5,12 +5,14 @@
 
   }]);
 
-  app.controller('campaignController', ['$scope', function($scope) {
+  app.controller('campaignController', ['$scope','$templateRequest', '$sce', '$compile', function($scope,$templateRequest, $sce, $compile) {
 
 
     $scope.current;
 
     $scope.campaigns;
+
+
 
 
     $scope.select_campaign = function(id){
@@ -19,6 +21,19 @@
           $scope.current=$scope.campaigns[i];
         }
       }
+
+      var templateUrl = $sce.getTrustedResourceUrl('nameOfTemplate.html');
+
+    $templateRequest("template/content.html").then(function(template) {
+        // template is the HTML template as a string
+
+        // Let's put it into an HTML element and parse any directives and expressions
+        // in the code. (Note: This is just an example, modifying the DOM from within
+        // a controller is considered bad style.)
+        $compile($(".right_area").html(template).contents())($scope);
+    }, function() {
+        // An error has occurred here
+    });
 
     }
 

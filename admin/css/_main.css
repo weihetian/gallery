@@ -258,3 +258,13 @@ body{
   top:5px;
   right:5px;
 }
+
+.empty_content{
+	text-align: center;
+
+}
+
+.empty_content h1{
+	color: #7f8c8d;
+	margin-top: 100px;
+}

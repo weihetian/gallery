@@ -55,45 +55,9 @@
       </div>
     </div>
     <div class='right_area'>
-      <div class='case_content_area'>
-
-
-        <div class='case_content_function_area'>
-          <div class='case_content_function'>
-            <i class="fa fa-floppy-o"> Save</i>
-          </div>
-        </div>
-
-        <div class='case_name case_content_area_item'>
-          <h4><i class="fa fa-file-o"></i> Name:</h4>
-          <input class='noborder_input green_input' type="text" value="{{current.name}}">
-        </div>
-
-        <div class='description case_content_area_item'>
-          <h4><i class="fa fa-pencil-square-o"></i> Description:</h4>
-          <textarea class='noborder_textarea green_input' type="text">{{current.description}}</textarea>
-        </div>
-
-        <div class='description case_content_area_item'>
-            <h4><i class="fa fa-file-image-o"></i> Pictures:   <div class='btn btn-default new_btn' data-toggle="modal" data-target="#myModal2"><i class="fa fa-plus"></i></div></h4>
-            <div class='pictures_wrapper'>
-              <div class='single_picture' ng-mouseenter="show_description($event)" ng-mouseleave="hide_description($event)" ng-repeat='image in current.images'>
-                <div class='delete_picture' ng-click='delete_image(image.id)'>
-                   <span class="glyphicon glyphicon-remove"></span>
-                </div>
-                <img src='{{image.url}}'>
-                <div class='image_description' ng-click='edit()'>
-                  <input ng-show='edit_description' type='text' class='edit_black edit_black_input edit_input{{image.id}}' value="{{image.description}}"></input>
-                  <br>
-                  <button  ng-show='edit_description' ng-click='submit_edit(image.id)' class='edit_black btn btn-default'>Submit</button>
-                  <p ng-show='!edit_description'>{{image.description}}</p>
-
-                </div>
-              </div>
-            </div>
-        </div>
-
-    </div>
+      <div class='empty_content'>
+        <h1><i class="fa fa-file-o"></i><br><br>No campaign selected</h1>
+      </div>
   </div>
 
 
