@@ -7,11 +7,17 @@
 
   <title>Gallery</title>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="css/_main.css">
+  <link rel="stylesheet" href="css/bgvid.css">
+
+
+      <link rel="stylesheet" href='css/topbar.css'>
+
+
+  <link rel="stylesheet" href="css/_main.css">
 
 </head>
 
-<header class="nav-down">
+<!-- <header class="nav-down">
     <div class='carvertise_logo_top'>CARVERTISE
     </div>
     <div class='tabs_top'>
@@ -24,13 +30,34 @@
     	<img src='http://www.tax-consulting-group-san-diego.com/images/taxes-menu-icon.png'>
 
     </div>
-</header>
+</header> -->
 
 
 <body>
-	<div class='top_bar'>
-	</div>
+  <!-- Top bar  -->
+  <header class="nav-down">
+      <div class='carvertise_logo_top'>CARVERTISE
+      </div>
+      <div class='tabs_top'>
+      	<a class='single_tab' href="../driver">driver</a>
+      	<a class='single_tab' href="../advertiser">advertiser</a>
+        <a class='single_tab' href="../gallery">gallery</a>
+        <a class='single_tab' href="../case_study">case study</a>
+      	<a class='single_tab' href="javascript:void(0)">press</a>
+      	<a class='single_tab' href="javascript:void(0)">FAQ</a>
+      </div>
+      <div class='tabs_top_mobile'>
+      	<img src='http://www.tax-consulting-group-san-diego.com/images/taxes-menu-icon.png'>
+
+      </div>
+  </header>
+
+
+
 <div class='header'>
+  <video autoplay loop poster="img/uber_2.png" id="bgvid">
+    <source src="video/Traffic - 1042.mp4" type="video/mp4">
+    </video>
 		<h1>Gallery Header</h1>
 		<p>Gallery Descrption goes here,Gallery Descrption goes here,Gallery Descrption goes here</p>
 </div>
@@ -51,6 +78,7 @@
 <script src='http://imagesloaded.desandro.com/imagesloaded.pkgd.js'></script>
 
 
+  <script src='js/topbar.js'></script>
 <script src='js/image_grid.js'>
 </script>
 

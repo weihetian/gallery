@@ -60,7 +60,7 @@ body{
 	border:1px solid white;
 }
 
-header {
+/*header {
     background-color: rgba(0,0,0,0.8);
     height: 50px;
     color:white;
@@ -68,7 +68,7 @@ header {
     top: 0;
     transition: top 0.2s ease-in-out;
     width: 100%;
-}
+}*/
 
 .carvertise_logo_top
 {
@@ -76,12 +76,12 @@ header {
 	font-size: 20px;
 }
 
-.tabs_top{
+/*.tabs_top{
 	position:absolute;
 	top:0px;
 	right:0px;
 	padding:15px;
-}
+}*/
 
 @media (max-width: 768px) {
 
@@ -89,7 +89,7 @@ header {
 }
 
 
-.tabs_top_mobile
+/*.tabs_top_mobile
 {
 	display: none;
 	position:absolute;
@@ -97,29 +97,29 @@ header {
 	right:0px;
 	padding:10px;
 
-}
+}*/
 
-.tabs_top_mobile img{
+/*.tabs_top_mobile img{
 	width:30px;
-}
+}*/
 
-@media (max-width: 768px) {
+/*@media (max-width: 768px) {
 
 .tabs_top_mobile
 {
 	display:inline;
 }
-}
+}*/
 
-.single_tab
+/*.single_tab
 {
 	color:white;
 	margin:0px 30px;
 	font-size: 20px;
-}
-.nav-up {
+}*/
+/*.nav-up {
     top: -50px;
-}
+}*/
 
 
 
@@ -128,10 +128,10 @@ header {
 {
 	text-align: center;
 	padding:150px 0px;
-
-	 background-image:url("../img/uber_2.png");
-    background-repeat: no-repeat;
-    background-size: 100% auto;
+	background-color: rgba(0,0,0,0.3);
+	 /*background-image:url("../img/uber_2.png");*/
+    /*background-repeat: no-repeat;
+    background-size: 100% auto;*/
 
   color:white;
 }
@@ -140,11 +140,11 @@ header {
     .header
 {
 	text-align: center;
-	padding:120px 0px;
+	padding:150px 0px;
 
-	 background-image:url("../img/uber_2.png");
-    background-repeat: no-repeat;
-    background-size: 100% auto;
+	 /*background-image:url("../img/uber_2.png");*/
+    /*background-repeat: no-repeat;
+    background-size: 100% auto;*/
 
   color:white;
 }
