@@ -59,6 +59,24 @@
       });
     }
 
+    $scope.delete_campaign = function(id){
+
+
+    $.ajax({
+      method: "POST",
+      url: "data_access/delete_campaign.php",
+      data: { id: id }
+    })
+    .done(function( msg ) {
+      if(msg == "succeed"){
+        updateCampaigns();
+      }else
+      {
+          alert(msg);
+      }
+
+    });
+  }
 
     $scope.campaigns = [];
 

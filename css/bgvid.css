@@ -4,7 +4,7 @@ video#bgvid {
     left: 50%;
     min-width: 100%;
     width: auto;
-    height: auto;
+    min-height: 110%;
     z-index: -100;
     -ms-transform: translateX(-50%);
     -moz-transform: translateX(-50%);

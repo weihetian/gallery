@@ -21,7 +21,11 @@ $imageresult = mysqli_query($conn,$query);
 while($row = mysqli_fetch_array($imageresult)){
   $image_id=$row['id'];
   $image_url = $row['url'];
+  if($row['picture_description']==null){
+      $image_description="";
+  }else{
   $image_description = $row['picture_description'];
+}
 
   $image_array[] = array("id"=>$image_id,"url"=>$image_url,"description"=>$image_description);
 }
